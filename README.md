@@ -124,7 +124,7 @@ A API JDBC (java Database Connectivity) permite conectar em qualquer  banco de d
     }
     ```
   
-   > Na classe carro é demonstrado uma implementação. Essa é que toda classe para permitir que seus objetos tenham a capacidade de serem serializados, deve “obrigatoriamente” implementar a interface java.io.Serializable. **Essa interface não possui nenhum método**. Ela é usada apenas para registrar a semântica de serialização para a **[máquina virtual Java](https://www.devmedia.com.br/introducao-ao-java-virtual-machine-jvm/27624)**, indicando que os objetos instanciados a partir da classe podem ser serializados (ou transformados em uma sequência de bytes).
+  
    
   </details>
   <details>
@@ -335,7 +335,8 @@ A API JDBC (java Database Connectivity) permite conectar em qualquer  banco de d
     
   </details>
 
-        
+   > Na classe carro é demonstrado uma implementação. Essa é que toda classe para permitir que seus objetos tenham a capacidade de serem serializados, deve “obrigatoriamente” implementar a interface java.io.Serializable. **Essa interface não possui nenhum 
+   método**. Ela é usada apenas para registrar a semântica de serialização para a **[máquina virtual Java](https://www.devmedia.com.br/introducao-ao-java-virtual-machine-jvm/27624)**, indicando que os objetos instanciados a partir da classe podem ser serializados   (ou transformados em uma sequência de bytes).
     
     # 4.2 Persistindo a classe carro
     
@@ -360,3 +361,4 @@ A API JDBC (java Database Connectivity) permite conectar em qualquer  banco de d
     > O termo **classpath**  no Java indica a pasta na qual a JVM vai
      buscar as bibliotecas para executar o código. 
     ```
+    - Em aplicações web Java, o local do classpath é a pasta /WEB-INF/lib. Geralmente, servidores web Java como Tomcat, JBoss, GlasshFish, entre outros, também têm alguma pasta interna que geralmente é chamada de “lib” para adicionar os arquivos .jar ao classpath global do servidor.
