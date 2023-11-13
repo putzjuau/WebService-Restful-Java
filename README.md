@@ -333,32 +333,99 @@ A API JDBC (java Database Connectivity) permite conectar em qualquer  banco de d
   <details>
       <summary>CarroService</summary>
     
-  </details>
+     ```java
+      package br.com.livro.domain;
+     
+      import java.sql.SQLException;
+      import java.util.ArrayList;
+      import java.util.List;
+
+      public class CarroService {
+    	private CarroDAO db = new CarroDAO();
+    
+    	// Lista todos os carros do banco de dados
+    	public List<Carro> getCarros() {
+    		try {
+    			List<Carro> carros = db.getCarros();
+    			return carros;
+    		} catch (SQLException e) {
+    			e.printStackTrace();
+    			return new ArrayList<Carro>();
+    		}
+    	}
+    
+    	// Busca um carro pelo id
+    	public Carro getCarro(Long id) {
+    		try {
+    			return db.getCarroById(id);
+    		} catch (SQLException e) {
+    			return null;
+    		}
+    	}
+    
+    	// Deleta o carro pelo id
+    	public boolean delete(Long id) {
+    		try {
+    			return db.delete(id);
+    		} catch (SQLException e) {
+    			return false;
+    		}
+    	}
+    
+    	// Salva ou atualiza o carro
+    	public boolean save(Carro carro) {
+    		try {
+    			db.save(carro);
+    			return true;
+    		} catch (SQLException e) {
+    			return false;
+    		}
+    	}
+    
+    	// Busca o carro pelo nome
+    	public List<Carro> findByName(String name) {
+    		try {
+    			return db.findByName(name);
+    		} catch (SQLException e) {
+    			return null;
+    		}
+    	}
+    
+    	public List<Carro> findByTipo(String tipo) {
+    		try {
+    			return db.findByTipo(tipo);
+    		} catch (SQLException e) {
+    			return null;
+    		}
+    	}
+    }
+  ´´´ 
+</details>
 
    > Na classe carro é demonstrado uma implementação. Essa é que toda classe para permitir que seus objetos tenham a capacidade de serem serializados, deve “obrigatoriamente” implementar a interface java.io.Serializable. **Essa interface não possui nenhum 
    método**. Ela é usada apenas para registrar a semântica de serialização para a **[máquina virtual Java](https://www.devmedia.com.br/introducao-ao-java-virtual-machine-jvm/27624)**, indicando que os objetos instanciados a partir da classe podem ser serializados   (ou transformados em uma sequência de bytes).
     
-    # 4.2 Persistindo a classe carro
+  # 4.2 Persistindo a classe carro
     
-    > Nota: ******persistência de objetos****** é o termo utilizado para armazenar um objeto em qualquer fonte de dados, seja em um arquivo texto ou em um banco de dados. Portanto é comum encontrarmos esse termo na Orientação a Objetos.
+  > Nota: ******persistência de objetos****** é o termo utilizado para armazenar um objeto em qualquer fonte de dados, seja em um arquivo texto ou em um banco de dados. Portanto é comum encontrarmos esse termo na Orientação a Objetos.
     
     
-    # MAS O QUE É SERIALIZAÇÃO?
+   # MAS O QUE É SERIALIZAÇÃO?
+  
+   A serialização em Java é o processo de converter um objeto Java em uma sequência de bytes, de modo que esse objeto possa ser armazenado em um arquivo, transmitido por uma rede ou restaurado em um objeto Java posteriormente. A serialização é amplamente utilizada em Java para salvar o estado de objetos e permitir a transferência de objetos entre diferentes partes de um programa ou até mesmo entre aplicativos Java.
     
-    A serialização em Java é o processo de converter um objeto Java em uma sequência de bytes, de modo que esse objeto possa ser armazenado em um arquivo, transmitido por uma rede ou restaurado em um objeto Java posteriormente. A serialização é amplamente utilizada em Java para salvar o estado de objetos e permitir a transferência de objetos entre diferentes partes de um programa ou até mesmo entre aplicativos Java.
+  A serialização é útil em cenários como:
     
-    A serialização é útil em cenários como:
-    
-    1. Armazenamento de estado de objetos em arquivos para persistência de dados.
-    2. Transferência de objetos através de uma rede.
-    3. Armazenamento de objetos em bancos de dados.
+  1. Armazenamento de estado de objetos em arquivos para persistência de dados.
+   2. Transferência de objetos através de uma rede.
+   3. Armazenamento de objetos em bancos de dados.
        
 
    <p> Todos os arquivos que forem selecionados à pasta /WEB-INF/lib são automaticamente adicionados ao classpath do projeto</p>
   
 
     ```markdown
-    > O termo **classpath**  no Java indica a pasta na qual a JVM vai
-     buscar as bibliotecas para executar o código. 
+      > O termo **classpath**  no Java indica a pasta na qual a JVM vai
+       buscar as bibliotecas para executar o código. 
     ```
-    - Em aplicações web Java, o local do classpath é a pasta /WEB-INF/lib. Geralmente, servidores web Java como Tomcat, JBoss, GlasshFish, entre outros, também têm alguma pasta interna que geralmente é chamada de “lib” para adicionar os arquivos .jar ao classpath global do servidor.
+  - Em aplicações web Java, o local do classpath é a pasta /WEB-INF/lib. Geralmente, servidores web Java como Tomcat, JBoss, GlasshFish, entre outros, também têm alguma pasta interna que geralmente é chamada de “lib” para adicionar os arquivos .jar ao classpath global do servidor.
